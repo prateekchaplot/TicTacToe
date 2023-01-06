@@ -11,6 +11,8 @@ public class Player
     // Game board
     private char[,] gameBoard;
 
+    public string CurrentState { get; private set; }
+
     // Constructor to initialize the name and symbol
     public Player(string name, char symbol, char[,] gameBoard)
     {
@@ -22,7 +24,8 @@ public class Player
     // Method to receive a notification from the Game class
     public void ReceiveNotification()
     {
-        Console.WriteLine($"It's {name}'s turn to make a move!");
+        CurrentState = $"It's {name}'s turn to make a move!";
+        Console.WriteLine(CurrentState);
         MakeMove();
     }
 
