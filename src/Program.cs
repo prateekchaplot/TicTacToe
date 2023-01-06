@@ -2,13 +2,13 @@
 using TicTacToe.Models;
 
 var board = new char[3, 3];
-Game game = new Game(new List<Player>(), board);
+
 Player player1 = new Player("Player 1", 'X', board);
 Player player2 = new Player("Player 2", 'O', board);
 
-// Add the players to the game
-game.AddPlayer(player1);
-game.AddPlayer(player2);
+var players = new List<Player> { player1, player2 };
+Game game = new Game(players, board);
+
 
 // Start the game
 while (!game.IsGameOver())
