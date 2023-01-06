@@ -22,11 +22,23 @@ public class Player
     }
 
     // Method to receive a notification from the Game class
-    public void ReceiveNotification()
+    public void ReceiveNotification(string message = "")
     {
-        CurrentState = $"It's {name}'s turn to make a move!";
-        Console.WriteLine(CurrentState);
-        MakeMove();
+        if (message == "We have a winner!")
+        {
+            // Do nothing
+        }
+        else if (message == "The game is a draw!")
+        {
+            Console.WriteLine("Game over! It's a draw.");
+        }
+        else
+        {
+            Console.WriteLine(message);
+            MakeMove();
+        }
+        
+        CurrentState = message;
     }
 
     // Method to make a move on the game board

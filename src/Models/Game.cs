@@ -16,6 +16,7 @@ public class Game
     {
         this.players = players;
         this.gameBoard = gameBoard;
+        currentPlayer = players[0];
 
         // Initialize the game board with empty spaces
         for (int i = 0; i < 3; i++)
@@ -69,11 +70,30 @@ public class Game
     // Method to notify the players when it's their turn to make a move
     public void NotifyPlayers()
     {
-        foreach (Player player in players)
+        currentPlayer.ReceiveNotification();
+        PrintGameBoard();
+
+        if (CheckForWinner())
         {
-            player.ReceiveNotification();
-            PrintGameBoard();
+            // Send notification to all players
+            foreach (Player player in players)
+            {
+                player.ReceiveNotification("We have a winner!");
+            }
         }
+        else
+        {
+            NextPlayer();
+        }
+    }
+
+    public void NextPlayer()
+    {
+        int currentIndex = players.IndexOf(currentPlayer);
+        if (currentIndex == players.Count - 1)
+            currentIndex = -1;
+        
+        currentPlayer = players[currentIndex + 1];
     }
 
     // Method to check if the game is over (e.g. if there is a winner or a draw)
